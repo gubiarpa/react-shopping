@@ -1,0 +1,28 @@
+{
+	"categories": [
+		{ "key": "beauty", "description": "Beauty" },
+		{ "key": "fragrances", "description": "Fragrances" },
+		{ "key": "furniture", "description": "Furniture" },
+		{ "key": "groceries", "description": "Groceries" },
+		{ "key": "home-decoration", "description": "Home Decoration" },
+		{ "key": "kitchen-accessories", "description": "Kitchen Accessories" },
+		{ "key": "laptops", "description": "Laptops" },
+		{ "key": "mens-shirts", "description": "Mens Shirts" },
+		{ "key": "mens-shoes", "description": "Mens Shoes" },
+		{ "key": "mens-watches", "description": "Mens Watches" },
+		{ "key": "mobile-accessories", "description": "Mobile Accessories" },
+		{ "key": "motorcycle", "description": "Motorcycle" },
+		{ "key": "skin-care", "description": "Skin Care" },
+		{ "key": "smartphones", "description": "Smartphones" },
+		{ "key": "sports-accessories", "description": "Sports Accessories" },
+		{ "key": "sunglasses", "description": "Sunglasses" },
+		{ "key": "tablets", "description": "Tablets" },
+		{ "key": "tops", "description": "Tops" },
+		{ "key": "vehicle", "description": "Vehicle" },
+		{ "key": "womens-bags", "description": "Womens Bags" },
+		{ "key": "womens-dresses", "description": "Womens Dresses" },
+		{ "key": "womens-jewellery", "description": "Womens Jewellery" },
+		{ "key": "womens-shoes", "description": "Womens Shoes" },
+		{ "key": "womens-watches", "description": "Womens Watches" }
+	]
+}
