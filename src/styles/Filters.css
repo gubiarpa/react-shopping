@@ -1,0 +1,22 @@
+.filters {
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 2rem;
+}
+
+@media (min-width: 768px) {
+  .filters {
+    display: flex;
+    flex-direction: row;
+		align-items: center;
+		justify-content: space-evenly;
+	}
+
+	.filters > div {
+		display: flex;
+		gap: 1rem;
+	}
+}
