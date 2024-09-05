@@ -2,6 +2,7 @@ import { useState } from 'react'
 
 import '../styles/Filters.css'
 
+import { products } from '../mocks/products.json'
 import { categories } from '../mocks/categories.json'
 
 export function Filters({ changeFilters }) {
@@ -20,6 +21,15 @@ export function Filters({ changeFilters }) {
 			...prevState,
 			category: event.target.value,
 		}))
+	}
+
+	const getCategories = () => {
+		const activeCategories = [
+			...new Set(products.map((product) => product.category)),
+		]
+		return categories.filter((category) =>
+			activeCategories.includes(category.key)
+		)
 	}
 
 	return (
@@ -44,7 +54,7 @@ export function Filters({ changeFilters }) {
 					onChange={handleOnChangeCategory}
 				>
 					<option value='all'>All</option>
-					{categories.map(({ key, description }) => (
+					{getCategories().map(({ key, description }) => (
 						<option
 							key={key}
 							value={key}
