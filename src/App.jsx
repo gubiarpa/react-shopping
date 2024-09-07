@@ -12,13 +12,13 @@ import { products as initialProducts } from './mocks/products.json'
 
 function App() {
 	const [products] = useState(initialProducts)
-	const { filters, filterProducts, setFilters } = useFilters()
+	const { filters, filterProducts } = useFilters()
 
 	const filteredProducts = filterProducts(products)
 
 	return (
 		<>
-			<Header changeFilters={setFilters} />
+			<Header />
 			<Products products={filteredProducts} />
 			{config.isDevelopment && <Footer filters={filters} />}
 		</>

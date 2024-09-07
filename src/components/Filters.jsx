@@ -1,25 +1,27 @@
-import { useState, useId } from 'react'
+import { useId, useContext } from 'react'
 
 import '../styles/Filters.css'
+
+import { FiltersContext } from '../context/FiltersContext'
 
 import { products } from '../mocks/products.json'
 import { categories } from '../mocks/categories.json'
 
-export function Filters({ changeFilters }) {
-	const [minPrice, setMinPrice] = useState(0)
+export function Filters() {
+	const { filters, setFilters } = useContext(FiltersContext)
+
 	const minPriceFilterId = useId()
 	const categoryFilterId = useId()
 
 	const handleOnChangeMinPrice = (event) => {
-		setMinPrice(event.target.value)
-		changeFilters((prevState) => ({
+		setFilters((prevState) => ({
 			...prevState,
 			minPrice: event.target.value,
 		}))
 	}
 
 	const handleOnChangeCategory = (event) => {
-		changeFilters((prevState) => ({
+		setFilters((prevState) => ({
 			...prevState,
 			category: event.target.value,
 		}))
@@ -46,7 +48,7 @@ export function Filters({ changeFilters }) {
 					step={50}
 					onChange={handleOnChangeMinPrice}
 				/>
-				<span>$ {minPrice}</span>
+				<span>$ {filters.minPrice}</span>
 			</div>
 
 			<div>
