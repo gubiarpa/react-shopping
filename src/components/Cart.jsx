@@ -5,9 +5,29 @@ import { useCart } from '../hooks/useCart'
 
 import '../styles/Cart.css'
 
+function CartItem({ cartItem, addToCart, removeFromCart }) {
+	const { id, title, images, quantity } = cartItem
+
+	return (
+		<li key={id}>
+			<img
+				src={images[0]}
+				alt={title}
+			/>
+			<div>
+				<strong>{title}</strong>
+			</div>
+			<footer>
+				<button onClick={() => removeFromCart(cartItem)}>-</button>
+				<small>Qty: {quantity}</small>
+				<button onClick={() => addToCart(cartItem)}>+</button>
+			</footer>
+		</li>
+	)
+}
+
 export function Cart() {
 	const cartCheckboxId = useId()
-
 	const { cart, addToCart, removeFromCart, clearCart } = useCart()
 
 	return (
@@ -25,25 +45,9 @@ export function Cart() {
 			/>
 			<aside className='cart'>
 				<ul>
-					{cart.map((item) => {
-						const { id, title, images, quantity } = item
-						return (
-							<li key={id}>
-								<img
-									src={images[0]}
-									alt={title}
-								/>
-								<div>
-									<strong>{title}</strong>
-								</div>
-								<footer>
-									<button onClick={() => removeFromCart(item)}>-</button>
-									<small>Qty: {quantity}</small>
-									<button onClick={() => addToCart(item)}>+</button>
-								</footer>
-							</li>
-						)
-					})}
+					{cart.map((cartItem) =>
+						CartItem({ cartItem, addToCart, removeFromCart })
+					)}
 				</ul>
 				{cart.length > 0 ? (
 					<button
