@@ -1,25 +1,50 @@
+import { useCart } from '../hooks/useCart'
+import { AddToCartIcon, RemoveFromCartIcon } from './Icons'
+
 import '../styles/Products.css'
-import { AddToCartIcon } from './Icons'
 
 const ProductsWithResults = ({ products }) => {
+	const { cart, addToCart, removeFromCart, clearFromCart } = useCart()
+
+	const checkProductInCart = ({ id }) => cart.some((item) => item.id === id)
+
 	return (
 		<ul>
-			{products.map(({ id, title, price, images }) => (
-				<li key={id}>
-					<img
-						src={images ? images[0] : ''}
-						alt={title}
-					/>
-					<div>
-						<strong>{title}</strong> - ${price}
-					</div>
-					<div>
-						<button>
-							<AddToCartIcon />
-						</button>
-					</div>
-				</li>
-			))}
+			{products.map((product) => {
+				const { id, title, price, images } = product
+				const isProductInCart = checkProductInCart({ id })
+
+				return (
+					<li key={id}>
+						<img
+							src={images ? images[0] : ''}
+							alt={title}
+						/>
+						<div>
+							<strong>{title}</strong> - ${price}
+						</div>
+						<div>
+							{isProductInCart ? (
+								<button
+									title='Remove from cart'
+									className={isProductInCart ? 'remove' : 'add'}
+									onClick={() => clearFromCart(product)}
+								>
+									<RemoveFromCartIcon />
+								</button>
+							) : (
+								<button
+									title='Add to cart'
+									className={isProductInCart ? 'remove' : 'add'}
+									onClick={() => addToCart(product)}
+								>
+									<AddToCartIcon />
+								</button>
+							)}
+						</div>
+					</li>
+				)
+			})}
 		</ul>
 	)
 }

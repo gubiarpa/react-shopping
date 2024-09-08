@@ -39,3 +39,11 @@
 	object-fit: cover;
 	background: #fff;
 }
+
+button.add {
+	background-color: #033;
+}
+
+button.remove {
+	background-color: #400;
+}
