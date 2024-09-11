@@ -1,4 +1,4 @@
-export const cartInitialState = []
+export const cartInitialState = JSON.parse(localStorage.getItem('cart')) || []
 
 export const cartReducerAction = {
 	addToCart: 'ADD_TO_CART',
@@ -6,6 +6,9 @@ export const cartReducerAction = {
 	clearFromCart: 'CLEAR_FROM_CART',
 	clearCart: 'CLEAR_CART',
 }
+
+export const updateLocalStorage = (state) =>
+	localStorage.setItem('cart', JSON.stringify(state))
 
 export const cartReducer = (state, action) => {
 	const { type, payload } = action
@@ -47,16 +50,22 @@ export const cartReducer = (state, action) => {
 		return newState
 	}
 
+	let newState = state
 	switch (type) {
 		case cartReducerAction.addToCart:
-			return addToCart({ state, payload })
+			newState = addToCart({ state, payload })
+			break
 		case cartReducerAction.removeFromCart:
-			return removeFromCart({ state, payload })
+			newState = removeFromCart({ state, payload })
+			break
 		case cartReducerAction.clearFromCart:
-			return clearFromCart({ state, payload })
+			newState = clearFromCart({ state, payload })
+			break
 		case cartReducerAction.clearCart:
-			return cartInitialState
+			newState = []
+			break
 	}
 
-	return state
+	updateLocalStorage(newState)
+	return newState
 }
