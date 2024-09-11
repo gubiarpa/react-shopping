@@ -4,22 +4,15 @@ import {
 	cartReducer,
 	cartReducerAction,
 } from '../reducers/cartReducer'
+import { useCartReducer } from '../hooks/useCartReducer'
 
 // 1. Create Context
 export const CartContext = createContext()
 
 // 2. Create Provider to provide the created context
 export function CartProvider({ children }) {
-	const [state, dispatch] = useReducer(cartReducer, cartInitialState)
-
-	const addToCart = (product) =>
-		dispatch({ type: cartReducerAction.addToCart, payload: product })
-	const removeFromCart = (product) =>
-		dispatch({ type: cartReducerAction.removeFromCart, payload: product })
-	const clearFromCart = (product) =>
-		dispatch({ type: cartReducerAction.clearFromCart, payload: product })
-	const clearCart = (product) =>
-		dispatch({ type: cartReducerAction.clearCart, payload: product })
+	const { state, addToCart, removeFromCart, clearFromCart, clearCart } =
+		useCartReducer()
 
 	return (
 		<CartContext.Provider
